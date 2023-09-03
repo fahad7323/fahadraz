@@ -1,29 +1,34 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const screen = document.querySelector(".screen");
-    const buttons = document.querySelectorAll(".btn");
+let header = document.querySelector("header");
+let menu = document.querySelector("#menu-icon");
+let navbar = document.querySelector(".navbar");
 
-    let expression = "";
+window.addEventListener("scroll", () => {
+    header.classList.toggle("shadow", window.scrollY > 0);
 
-    buttons.forEach((button) => {
-        button.addEventListener("click", (e) => {
-            const buttonText = e.target.getAttribute("data-num");
-
-            if (buttonText === "=") {
-                try {
-                    const result = eval(expression);
-                    screen.value = result;
-                    expression = result;
-                } catch (error) {
-                    screen.value = "Error";
-                    expression = "";
-                }
-            } else if (buttonText === "AC") {
-                screen.value = "";
-                expression = "";
-            } else {
-                expression += buttonText;
-                screen.value = expression;
-            }
-        });
-    });
 });
+
+menu.onclick = () => {
+    navbar.classList.toggle("active");
+
+};
+window.onscroll = () => {
+    navbar.classList.remove("active");
+}
+
+  //darkmode / lightmode 
+
+let darkmode = document.querySelector("#darkmode");
+
+
+ darkmode.onclick = () => {
+     if(darkmode.classList.contains("bx-moon")){
+         darkmode.classList.replace("bx-moon", "bx-sun");
+         document.body.classList.add('active');
+
+     }
+     else{
+         darkmode.classList.remove("bx-sun", "bx-moon");
+         document.body.classList.remove("active");
+     }
+ }
+
